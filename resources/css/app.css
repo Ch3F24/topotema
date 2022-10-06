@@ -38,15 +38,25 @@ header, body {
 
 /*Categories*/
 .categories {
-    @apply space-y-4 ml-12 lg:ml-0
+    @apply space-y-4 pl-12 lg:ml-0
 }
 .categories li span {
     @apply font-bold text-white bg-red-500 inline-block px-4 py-1 relative;
 }
+
+.categories li p.select-all {
+    @apply relative mb-3 cursor-pointer;
+}
+.categories li p.select-all::after {
+    content: "";
+    @apply absolute top-1/2 left-1/2 w-2/5 h-px bg-white -translate-x-1/2 -translate-y-1/2;
+}
+
 label>input[type=checkbox], label>input[type=radio] {
     display: none;
 }
-label>input[type=checkbox]+:before, label>input[type=radio]+:before {
+label>input[type=checkbox]+:before, label>input[type=radio]+:before,
+.select-all {
     content: "";
     @apply w-4 h-4 translate-y-1/2 top-0 -left-8 absolute inline-block rounded-full border border-white align-bottom;
 }
@@ -58,6 +68,6 @@ label>input[type=checkbox]:checked+:before, label>input[type=radio]:checked+:bef
 @media screen and (min-width: 1024px) {
     body {
         background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");
-        background-position: -35% top, left top;
+        background-position: calc(100vw * 0.25) top, left top;
     }
 }
