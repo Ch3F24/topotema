@@ -23,12 +23,13 @@
             this.map._layersMaxZoom = 17
 
             function whenClicked(e) {
+                console.log(e.target)
                 console.log(e.target.feature.properties);
             }
             function onEachFeature(feature, layer) {
                 //bind click
                 layer.on({
-                    click: whenClicked
+                    click: whenClicked,
                 });
             }
             let geo = L.geoJSON(null,{
@@ -42,7 +43,13 @@
                     // return isYearChecked && isEventTypeChecked //only true if both are true
                     return isNameChecked || isSubjectWordTypeChecked || isOrganizationTypeChecked || isEventTypeChecked //only true if both are true
                 }
-            }).addTo(this.map)
+            }).addTo(this.map);
+
+            // geo.bindPopup(layer.feature.properties.Name);
+            geo.bindPopup((layer) => {
+                return `${layer.feature.properties.Name} <br> <a href="objects/${layer.feature.properties.Name}" target="_blank">Részletek</a>`
+            });
+
 
             this.$store.commit('setGeoJsonLayer',geo)
 
