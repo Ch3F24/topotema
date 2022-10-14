@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Event;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.app');
+    return view('pages.home');
+})->name('home');
+Route::get('/object', function () {
+    return view('pages.object');
+});
+
+Route::get('/db', function () {
+    dd(Event::query()->get());
+//    DB::listen(function ($query) {
+//        dump("{$query->time} ==> {$query->sql}");
+//    });
 });

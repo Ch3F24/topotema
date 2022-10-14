@@ -70,7 +70,8 @@ header, body {
         @apply rounded-full border border-red-500 relative;
     }
     .input-filter input,
-    .input-filter button {
+    .input-filter button,
+    .input-filter p {
         @apply w-full rounded-full bg-black text-white placeholder-white text-center p-1
     }
     .input-filter .input-filter_dropdown {
@@ -78,8 +79,27 @@ header, body {
     }
 
 @media screen and (min-width: 1024px) {
-    body {
+    body.home {
         background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");
         background-position: calc(100vw * 0.25) top, left top;
     }
+    body {
+        background-image: url("http://topotema.test/assets/images/mask.svg");
+        background-position: calc(100vw * 0.25) top;
+    }
 }
+
+/*Object page*/
+
+#folder-files.show {
+    @apply max-h-96 py-4 border-t border-b lg:border-0;
+}
+#pdf-folder p {
+    @apply rounded-full border border-red-500  text-white text-center p-1 lg:absolute lg:top-1/2 lg:left-0 lg:-translate-y-1/2 w-full lg:mt-2 lg:border-0 lg:rounded-none;
+}
+/*.images .swiper-slide img {*/
+/*    @apply h-[60vh] lg:h-[300px] w-full object-cover;*/
+/*}*/
+/*.swiper.images .swiper-slide {*/
+/*    width: auto!important;*/
+/*}*/

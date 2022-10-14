@@ -15,8 +15,6 @@ const $translations = {};
 import hu from '../lang/hu.json' assert {type: 'json'};
 import en from '../lang/en.json' assert {type: 'json'};
 
-// import en from  "../lang/en.json"
-console.log($lang)
 $translations.en = en;
 $translations.hu = hu;
 
