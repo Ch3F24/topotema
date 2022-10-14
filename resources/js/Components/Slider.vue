@@ -4,14 +4,15 @@
       '--swiper-navigation-color': '#fff',
       '--swiper-pagination-color': '#fff',
       '--swiper-navigation-size': '1.5rem',
-      '--swiper-theme-color': '#fff',
     }"
         :navigation="{
             enabled: true,
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         }"
-
+        @click="modalOpened = true"
+        @init="sliderInit"
+        @slideChange="slideChange"
         :spaceBetween="10"
         :thumbs="{ swiper: thumbsSwiper }"
         :modules="modules"
@@ -53,43 +54,61 @@
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
     </div>
-
+    <teleport to="body">
+        <Modal v-show="modalOpened" @close="modalOpened = false">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <img :src="activeSlideImg" alt="" class="mx-auto h-[70vh] object-contain ">
+        </Modal>
+    </teleport>
 </template>
 <script>
-// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
-
-// Import Swiper styles
+import Modal from "./Modal.vue"
 import 'swiper/css';
-
 import "swiper/css/free-mode"
 import "swiper/css/navigation"
 import "swiper/css/thumbs"
 
-// import required modules
 import {FreeMode,Navigation,Thumbs} from 'swiper';
 
 export default {
     components: {
         Swiper,
         SwiperSlide,
+        Modal
     },
     data() {
         return {
             modules: [FreeMode,Navigation,Thumbs],
-            thumbsSwiper: null
+            thumbsSwiper: null,
+            modalOpened: false,
+            activeSlideImg: null
         }
     },
+
     methods: {
         setThumbsSwiper(swiper) {
             this.thumbsSwiper = swiper;
         },
+        slideChange(swiper) {
+            this.activeSlideImg = swiper.slides[swiper.activeIndex].querySelector('img').src
+        },
+        sliderInit(swiper) {
+            this.activeSlideImg = swiper.slides[swiper.activeIndex].querySelector('img').src
+        }
+
     }
 }
 </script>
 <style>
 .thumbs.swiper {
     margin: 0 2rem;
+}
+.images img {
+    height: 300px;
+    object-fit: cover;
+    width: 100%;
 }
 .swiper-button-next:after, .swiper-button-prev:after {
     font-size: 1.5rem;
@@ -99,5 +118,9 @@ export default {
 }
 .swiper-button-prev, .swiper-rtl .swiper-button-next {
     left: 0;
+}
+.swiper-button-next,
+.swiper-button-prev {
+    color: #ffffff;
 }
 </style>

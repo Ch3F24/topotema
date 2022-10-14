@@ -25,7 +25,7 @@
     <div class="w-full lg:w-7/12 ml-auto order-first lg:order-none flex flex-wrap">
         <h1 class="w-full text-white order-first lg:order-none">Andrássy út 22.</h1>
         <div class="w-full lg:w-7/12">
-            <div>
+            <div class="slider">
                 <slider></slider>
             </div>
             <p class="text-white mt-6">Ceperion corat quid ut omnimi, ut utem quatemqui acea evelent
