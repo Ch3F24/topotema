@@ -8,6 +8,8 @@ export default new createStore({
             checkboxStates: [],
             geoJsonLayer: [],
             map: null,
+            start: 1950,
+            end: 1970,
             filters: {
                 category: [
                     {
@@ -84,11 +86,25 @@ export default new createStore({
                         checked: false,
                         type: "subject_word"
                     },
-                ]
+                ],
+                years: [1950,1970]
             }
         }
     },
     mutations: {
+        setStart(state,value) {
+          state.start = value
+        },
+        setEnd(state,value) {
+            state.end = value
+        },
+        setYear(state,value) {
+            state.filters.years = [];
+            value.forEach((year) => {
+                console.log(parseInt(year))
+                state.filters.years.push(parseInt(year));
+            })
+        },
         setFilter(state,filter) {
             state.filters[filter.type][filter.key].checked = !state.filters[filter.type][filter.key].checked;
         },
@@ -110,19 +126,22 @@ export default new createStore({
     },
     actions: {
         updateCheckboxStates({state}) {
+            console.log('update')
             state.checkboxStates = {
                 category: [],
-                years: [],
+                year: [],
                 organizations: [],
                 subject_words: [],
                 name: []
             }
+            state.checkboxStates.year = state.filters.years;
+            // state.checkboxStates.year.push(state.end);
             Object.keys(state.filters).forEach((type)=> {
                 state.filters[type].forEach((filter) => {
                     if (filter.checked) {
                         switch (type) {
                             case 'category': state.checkboxStates.category.push(filter.value); break
-                            case 'year': state.checkboxStates.years.push(filter.value); break
+                            // case 'year': state.checkboxStates.years.push(filter.value); break
                             case 'organizations': state.checkboxStates.organizations.push(filter.value); break
                             case 'subject_words': state.checkboxStates.subject_words.push(filter.value); break
                         }
@@ -130,6 +149,7 @@ export default new createStore({
 
                 })
             })
+            console.log(state.checkboxStates)
         },
         async clearFilters({state}) {
             Object.keys(state.filters).forEach((type)=> {
