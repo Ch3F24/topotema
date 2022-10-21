@@ -7,7 +7,7 @@
     @yield('assets')
     @vite('resources/css/app.css')
 </head>
-<body>
+<body @class(["home" => route('home')]) data-bg="1">
     <header class="lg:container px-4">
         <nav class="flex pt-4 pb-12 lg:py-8">
 {{--            <div class="lg:w-1/4 mr-4">--}}
@@ -42,11 +42,7 @@
             </ul>
         </nav>
     </header>
-    <main id="app"
-        @class([
-            "md:container flex flex-wrap",
-            "home" => route('home')
-        ])>
+    <main id="app" class="md:container flex flex-wrap">
         @yield('main')
     </main>
 </body>
