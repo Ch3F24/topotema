@@ -7,15 +7,34 @@ body {
     @apply bg-black min-h-screen
 }
 
+body::after {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    z-index: -1;
+    content: url(http://topotema.test/assets/images/hatter1.jpg) url(http://topotema.test/assets/images/hatter2.jpg) url(http://topotema.test/assets/images/hatter3.jpg);
+}
+
 /*Header*/
-header {
+.home header {
     background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");
     background-position: 180px top, left top;
-    @apply lg:bg-none relative
+    background-size: cover, cover;
+
 }
+/*.home .bg-2 header {*/
+/*    background-image: url("http://topotema.test/assets/images/mask.svg"), url("https://imageio.forbes.com/specials-images/imageserve/6266b701fb154e336e81230e/Genovation-GXE-Electric-Corvette-29/0x0.jpg?format=jpg&crop=1680,1043,x221,y0,safe&width=960");*/
+/*}*/
+
+/*header {*/
+/*    background-image: url("http://topotema.test/assets/images/mask.svg");*/
+/*    background-position: 180px top;*/
+/*    @apply lg:bg-none relative*/
+/*}*/
 header, body {
     background-repeat: no-repeat, no-repeat;
-    background-size: cover, cover;
+    /*background-size: cover, contain;*/
 }
 
 /*Nav*/
@@ -79,14 +98,33 @@ header, body {
     }
 
 @media screen and (min-width: 1024px) {
-    body.home {
-        background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");
+    .home header {
+        @apply bg-none;
+    }
+    body.home  {
         background-position: calc(100vw * 0.25) top, left top;
+        transition: background-image 1s linear;
+        background-size: cover, contain;
+
+        /*background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");*/
     }
-    body {
-        background-image: url("http://topotema.test/assets/images/mask.svg");
-        background-position: calc(100vw * 0.25) top;
+    body.home[data-bg="1"]  {
+        /*background-position: calc(100vw * 0.25) top, left top;*/
+        /*transition: background-image 1s linear;*/
+        background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");
     }
+    body.home[data-bg="2"]  {
+        background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter2.jpg");
+
+
+    }
+    body.home[data-bg="3"]  {
+        background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter3.jpg");
+    }
+    /*body {*/
+    /*    background-image: url("http://topotema.test/assets/images/mask.svg");*/
+    /*    background-position: calc(100vw * 0.25) top;*/
+    /*}*/
 }
 
 /*Object page*/

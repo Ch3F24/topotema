@@ -34,3 +34,19 @@ app.mixin({
 app.component('categories',Categories);
 app.component('maps',Map);
 app.mount('#app');
+
+let body = document.body;
+function changeBg() {
+    let currentIndex = parseInt(body.dataset.bg);
+    if (currentIndex === 3) {
+        body.dataset.bg = 1;
+    } else {
+        body.dataset.bg = currentIndex + 1;
+    }
+    setTimeout(changeBg,5000);
+}
+setTimeout(changeBg,5000);
+// changeBg();
+// while (true) {
+
+// }
