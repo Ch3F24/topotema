@@ -13,12 +13,13 @@ body::after {
     height: 0;
     overflow: hidden;
     z-index: -1;
-    content: url(http://topotema.test/assets/images/hatter1.jpg) url(http://topotema.test/assets/images/hatter2.jpg) url(http://topotema.test/assets/images/hatter3.jpg);
+    content: url(/assets/images/hatter1.jpg) url(/assets/images/hatter2.jpg) url(/assets/images/hatter3.jpg);
 }
 
 /*Header*/
 .home header {
-    background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");
+    /*background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");*/
+    background-image: url("/assets/images/mask.svg"), url("/assets/images/hatter1.jpg");
     background-position: 180px top, left top;
     background-size: cover, cover;
 
@@ -111,15 +112,18 @@ header, body {
     body.home[data-bg="1"]  {
         /*background-position: calc(100vw * 0.25) top, left top;*/
         /*transition: background-image 1s linear;*/
-        background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");
+        /*background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");*/
+        background-image: url("/assets/images/mask.svg"), url("/assets/images/hatter1.jpg");
     }
     body.home[data-bg="2"]  {
-        background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter2.jpg");
+        /*background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter2.jpg");*/
+        background-image: url("/assets/images/mask.svg"), url("/assets/images/hatter2.jpg");
 
 
     }
     body.home[data-bg="3"]  {
-        background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter3.jpg");
+        /*background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter3.jpg");*/
+        background-image: url("/assets/images/mask.svg"), url("/assets/images/hatter3.jpg");
     }
     /*body {*/
     /*    background-image: url("http://topotema.test/assets/images/mask.svg");*/
