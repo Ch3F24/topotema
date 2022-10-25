@@ -93,7 +93,7 @@
                 //Set pointer popup
                 geo.bindPopup((layer) => {
                     // return `${layer.feature.properties.Name} <br> <a href="objects/${layer.feature.properties.Name}" target="_blank">Részletek</a>`
-                    return `${layer.feature.properties.Name} <br> <a href="objects" target="_blank">Részletek</a>`
+                    return `${layer.feature.properties.Name} <br> <a href="object" target="_blank">Részletek</a>`
                 });
 
                 //Commit geoJson to vuex
