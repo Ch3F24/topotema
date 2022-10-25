@@ -101,7 +101,6 @@ export default new createStore({
         setYear(state,value) {
             state.filters.years = [];
             value.forEach((year) => {
-                console.log(parseInt(year))
                 state.filters.years.push(parseInt(year));
             })
         },
@@ -117,7 +116,7 @@ export default new createStore({
         addressSearch(state,value) {
             state.checkboxStates = {
                 category: [],
-                years: [],
+                year: [],
                 organizations: [],
                 subject_words: [],
                 name: [value]
@@ -126,7 +125,6 @@ export default new createStore({
     },
     actions: {
         updateCheckboxStates({state}) {
-            console.log('update')
             state.checkboxStates = {
                 category: [],
                 year: [],
@@ -149,13 +147,20 @@ export default new createStore({
 
                 })
             })
-            console.log(state.checkboxStates)
         },
         async clearFilters({state}) {
             Object.keys(state.filters).forEach((type)=> {
-                state.filters[type].forEach((filter) => {
-                    filter.checked = false
-                })
+                console.log(type)
+                if (type !== 'years') {
+                    state.filters[type].forEach((filter) => {
+                        filter.checked = false
+                    })
+                }
+            })
+        },
+        async clearFilter({state},filter) {
+            state.filters[filter].forEach((filter) => {
+                filter.checked = false
             })
         },
         async filtering({state,dispatch,commit},search = null) {

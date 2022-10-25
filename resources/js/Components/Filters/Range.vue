@@ -19,7 +19,6 @@ export default {
             step: 1,
             connect: true,
             tooltips: {
-                // tooltips are output only, so only a "to" is needed
                 to: function(numericValue) {
                     return numericValue.toFixed(0);
                 }
@@ -30,8 +29,6 @@ export default {
         });
 
         arbitraryValuesSlider.noUiSlider.on('change', function (values) {
-            // _this.$store.commit('setStart',parseInt(values[0]))
-            // _this.$store.commit('setEnd',parseInt(values[1]))
             _this.$store.commit('setYear',values)
             _this.$store.dispatch('updateCheckboxStates')
         });

@@ -1,5 +1,6 @@
 <template>
     <div id="mapContainer" class="h-full mb-8 md:mb-0 h-[50vh] lg:h-[60vh]">
+        <!-- Blind Map animation -->
         <Transition name="fade" mode="out-in">
             <div class="h-full mb-8 md:mb-0 h-[50vh] lg:h-[60vh]" v-if="!mapLoaded">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 856.85 532.81" class="max-h-full">
@@ -7,10 +8,13 @@
                     <path class="cls-1 znSwXcFk_1" d="M392,191.08c-2.09.24-1,.57-.76,1.58a6.4,6.4,0,0,1,.56,1.46,16.45,16.45,0,0,0,5.08,1.58c.75.05,1.69-.84,2.35-.67,1.24.32,1.63,1.63,2.21,2.7,1.52,2.8,1.82,2.44,4.83,1.94.66-.12,1.81-.62,2.43-.2,1.12.76.07,1.1.15,1.83.1,1-.26,1,.29,2.24.35.8,1.07,1.48,1.4,2.33.42,1.07,1,2.94.11,4s-1.59.23-2.53.48a3.6,3.6,0,0,0-2.54,1.45c-.45.65-.39,2.16-1,2.58-.8.55-1.43-.51-2.25-.14-.07,0-1.09,1.37-1.24,1.53-.65.71-.85,1.33-1.82,1.59s-1.31-1.35-2.21-.07c-.5.73,1.48,1.67.11,3.34-.49.59-.81-.28-1.41.23s-1.1,2.24-1.43,2.82c-1.45,2.62-2.19,3.83-4.85,4.85-3.23,1.23-2.68.91-5.22-1.32-.67-.59-1.94-1.11-2.38-1.94-.65-1.22.4-1.26.15-2.26-.16-.62-3.72-3.49-4.18-2.43-.33.76.5.6-.24,1.36.06,0-1.45.86-1.48.87-1.84.7-1.83.54-3.57.22-3-.56-3.65.15-6.28,1.48-1.45.73-1.11,1.37-2.37-.21a3.15,3.15,0,0,1-.65-2.91c.38-.82,1.24-.21,1.32-1.78.07-1.18-.77-1.87-.34-3.13.31-.94,1.61-1.48,2-2.42.67-1.62-.39-1.82-.43-3.12-.06-1.85,1.37-2.86-.53-4.53-.88-.78-2.1-.72-2.95-1.56-1.38-1.36-.33-1.08-.51-2.23a8.76,8.76,0,0,0-.57-2.24l-1.06-2.06c0-.9.79-.57.84-.94a5.94,5.94,0,0,0,.32-1.21c0-.57-.74-1.17-.75-1.28-.07-1.27.77-1.17,1-2.51.32-1.75-2.46-3.16.26-4.29,1.37-.57,2.72.44,4,.21,1.8-.33.24-.84,1.12-1.44s.58-.47,1.75-.55a10.52,10.52,0,0,0,2.61-.34c2.12-.58,1.79.05,1.7-2a7.82,7.82,0,0,1-.05-2.1c.82-.71,1.09.81,1.85,1.11,1.16.46,2.64-.35,3.86,0s-.66,2.33,1.32.62c.88-.77.28-2.32,2-2,.75.16,1.43,1.69,2.06,2.13,1.7,1.18,4.16,1,5,3.42.4,1.11-.83,1.08.35,2.24C390.44,190.3,391.87,189.54,392,191.08Z"></path>
                 </svg>
             </div>
-<!--            <div id="mapContainer" class="h-full mb-8 md:mb-0 h-[50vh] lg:h-[60vh]" v-else></div>-->
         </Transition>
     </div>
+
+    <!-- Range slider filter-->
     <range_filter></range_filter>
+
+    <!-- Input Filters    -->
     <input_filters></input_filters>
 </template>
 
@@ -74,14 +78,15 @@
                 let geo = L.geoJSON(null,{
                     onEachFeature: onEachFeature,
                     filter: (feature) => {
-                        const isYearChecked = feature.properties.year >= this.checkboxStates.year[0] && feature.properties.year <= this.checkboxStates.year[1]
-                        // const isYearChecked = this.checkboxStates.year.includes(feature.properties.year)
-                        const isEventTypeChecked = this.checkboxStates.category.includes(feature.properties.category)
-                        const isOrganizationTypeChecked = this.checkboxStates.organizations.includes(feature.properties.organizations)
-                        const isSubjectWordTypeChecked = this.checkboxStates.subject_words.includes(feature.properties.subject_words)
-                        const isNameChecked = this.checkboxStates.name.includes(feature.properties.Name)
-                        // return isYearChecked && isEventTypeChecked //only true if both are true
-                        return isYearChecked && (isNameChecked || isSubjectWordTypeChecked || isOrganizationTypeChecked || isEventTypeChecked) //only true if both are true
+                        if (this.checkboxStates.name.length) {
+                            return this.checkboxStates.name.includes(feature.properties.Name)
+                        } else {
+                            const isYearChecked = feature.properties.year >= this.checkboxStates.year[0] && feature.properties.year <= this.checkboxStates.year[1]
+                            const isOrganizationTypeChecked = this.checkboxStates.organizations.length ? this.checkboxStates.organizations.includes(feature.properties.organizations) : true
+                            const isSubjectWordTypeChecked = this.checkboxStates.subject_words.length ? this.checkboxStates.subject_words.includes(feature.properties.subject_words) : true
+                            const isCategoryChecked = this.checkboxStates.category.includes(feature.properties.category);
+                            return isYearChecked && isOrganizationTypeChecked && isSubjectWordTypeChecked && isCategoryChecked && isSubjectWordTypeChecked //only true if both are true
+                        }
                     }
                 }).addTo(this.map);
 

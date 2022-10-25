@@ -5,7 +5,7 @@
                   class="cursor-pointer block hover:bg-red-500/50 hover:text-white"
                   :class="{'text-red-500' : value.checked}"
                   :title="value.label"
-                  @click="select(key)">{{ value.label }}</li>
+                  @click="select(key,value.checked)">{{ value.label }}</li>
         </ul>
         <button @click="show = !show">
             {{ __(this.name)}}
@@ -36,8 +36,9 @@ export default {
       })
     },
     methods: {
-        select(key) {
-            this.$store.commit('setFilter', {type: this.name,key: key})
+        select(key,isChecked) {
+            this.$store.dispatch('clearFilter',this.name)
+            if (!isChecked) this.$store.commit('setFilter', {type: this.name,key: key})
             this.$store.dispatch('updateCheckboxStates')
             this.show = false
         }
