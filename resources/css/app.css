@@ -52,7 +52,8 @@ header, body {
 }
 .divider.magnificent::after {
     content: "";
-    background-image: url("http://topotema.test/assets/svg/show_magnifying.svg");
+    /*background-image: url("http://topotema.test/assets/svg/show_magnifying.svg");*/
+    background-image: url("/assets/svg/show_magnifying.svg");
     @apply bg-black absolute right-8 -top-4 w-12 h-8 block bg-no-repeat bg-center
 }
 
