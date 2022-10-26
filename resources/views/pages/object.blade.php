@@ -22,8 +22,8 @@
             </p>
         </div>
     </div>
-    <div class="w-full lg:w-7/12 ml-auto order-first lg:order-none flex flex-wrap">
-        <h1 class="w-full text-white order-first lg:order-none">Andrássy út 22.</h1>
+    <div class="px-4 md:px-0 w-full lg:w-7/12 ml-auto order-first lg:order-none flex flex-wrap">
+        <h1 class="w-full text-white order-first lg:order-none text-2xl lg:text-4xl mb-4">Andrássy út 22.</h1>
         <div class="w-full lg:w-7/12">
             <div class="slider">
                 <slider></slider>
@@ -53,9 +53,9 @@
 {{--                </div>--}}
             </div>
             <div class="w-full space-y-2 max-h-0 transition-all overflow-hidden order-last lg:order-none mt-4" id="folder-files">
-                <p class="text-white"><a href="">Anyját verte.pdf</a></p>
-                <p class="text-white"><a href="">Anyját verte.pdf</a></p>
-                <p class="text-white"><a href="">Anyját verte.pdf</a></p>
+                <p class="text-white"><a href="">Test1.pdf</a></p>
+                <p class="text-white"><a href="">Test2.pdf</a></p>
+                <p class="text-white"><a href="">Test3.pdf</a></p>
             </div>
             <div class="w-1/2 lg:w-full input-filter lg:mt-4">
                 <p class="text-white px-4">Videó</p>

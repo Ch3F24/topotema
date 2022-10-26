@@ -42,7 +42,7 @@
             </ul>
         </nav>
     </header>
-    <main id="app" class="md:container flex flex-wrap">
+    <main id="app" class="md:container flex flex-wrap gap-x-4">
         @yield('main')
     </main>
 </body>
