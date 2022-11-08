@@ -6,7 +6,6 @@
 @section('main')
     <div class="hidden lg:block lg:w-3/12">
         <div class="text-white mt-24">
-            {{ $event->name }}
             <p>ÁLLAMVÉDELMI NEGYED LEÍRÁSA</p>
             <p>TEMA 3</p>
             <p>
