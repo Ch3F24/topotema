@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-4">
+    <div class="mx-8">
         <div id="arbitrary-values-slider" class="my-16"></div>
     </div>
 

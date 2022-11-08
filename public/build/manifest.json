@@ -16,7 +16,7 @@
     "src": "node_modules/leaflet/dist/images/marker-icon.png"
   },
   "resources/js/app.js": {
-    "file": "assets/app.b315ac6a.js",
+    "file": "assets/app.de37f4ae.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
@@ -53,6 +53,11 @@
   "__plugin-vue_export-helper.219fcf33.js": {
     "file": "assets/_plugin-vue_export-helper.219fcf33.js"
   },
+  "resources/css/app.css": {
+    "file": "assets/app.489cfa0c.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
   "resources/js/object.css": {
     "file": "assets/object.4d26d3ad.css",
     "src": "resources/js/object.css"
@@ -60,10 +65,5 @@
   "resources/js/app.css": {
     "file": "assets/app.6056f137.css",
     "src": "resources/js/app.css"
-  },
-  "resources/css/app.css": {
-    "file": "assets/app.24a13244.css",
-    "src": "resources/css/app.css",
-    "isEntry": true
   }
 }

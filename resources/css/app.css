@@ -20,22 +20,11 @@ body::after {
 .home header {
     /*background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");*/
     background-image: url("/assets/images/mask.svg"), url("/assets/images/hatter1.jpg");
-    background-position: 180px top, left top;
+    background-position: 180px top, -100px top;
     background-size: cover, cover;
-
 }
-/*.home .bg-2 header {*/
-/*    background-image: url("http://topotema.test/assets/images/mask.svg"), url("https://imageio.forbes.com/specials-images/imageserve/6266b701fb154e336e81230e/Genovation-GXE-Electric-Corvette-29/0x0.jpg?format=jpg&crop=1680,1043,x221,y0,safe&width=960");*/
-/*}*/
-
-/*header {*/
-/*    background-image: url("http://topotema.test/assets/images/mask.svg");*/
-/*    background-position: 180px top;*/
-/*    @apply lg:bg-none relative*/
-/*}*/
 header, body {
     background-repeat: no-repeat, no-repeat;
-    /*background-size: cover, contain;*/
 }
 
 /*Nav*/
@@ -98,6 +87,13 @@ header, body {
     .input-filter .input-filter_dropdown {
         @apply absolute bottom-full left-[5%] bg-black border-t border-l border-r border-red-500 text-white w-[90%] rounded-t-lg p-4 z-[400] space-y-2;
     }
+
+@media screen and (min-width: 768px) {
+    .home header {
+        background-position: 100% top, -250px top;
+        background-size: contain, cover;
+    }
+}
 
 @media screen and (min-width: 1024px) {
     .home header {

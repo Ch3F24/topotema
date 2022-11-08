@@ -17,7 +17,7 @@
                 <span>{{ filter.label }}</span>
             </label>
             <div v-if="filter.clicked" class="lg:absolute left-full top-0 border-t border-b -ml-[48px] mt-6 lg:border-0 lg:bg-black/75 lg:mt-0 lg:p-8 z-[9990]">
-                <p class="text-white px-4 py-8 lg:py-0 w-[400px] h-[300px] lg:overflow-scroll ">Aviduci faccus ide vel incturibus eseriti
+                <p class="text-white px-4 py-8 lg:py-0 lg:w-[400px] lg:h-[300px] lg:overflow-y-scroll ">Aviduci faccus ide vel incturibus eseriti
                     onsequo te nonsequi optiorr orecae.
                     Idit eicta custibusdam et laut eos aut
                     aciurio rectota tatur. Quiam estem num
