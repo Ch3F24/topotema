@@ -12,8 +12,9 @@
                        :class="{'on' : filter.checked}"
                        :name="filter.value"
                        :value="filter.checked"
-                       @click.prevent="change(key)"
-                       @checked="filter.checked"/>
+                       @click.prevent="!filter.disabled ? change(key) : false"
+                       @checked="filter.checked"
+                       :disabled="filter.disabled"/>
                 <span>{{ filter.label }}</span>
             </label>
             <div v-if="filter.clicked" class="lg:absolute left-full top-0 border-t border-b -ml-[48px] mt-6 lg:border-0 lg:bg-black/75 lg:mt-0 lg:p-8 z-[9990]">
@@ -68,7 +69,9 @@ export default {
         },
         toggleAll() {
             this.filters.category.forEach((filter) => {
-                filter.checked = true
+                if (!filter.disabled) {
+                    filter.checked = true
+                }
             })
         }
     },

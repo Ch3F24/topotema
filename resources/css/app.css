@@ -62,6 +62,15 @@ header, body {
         content: "";
         @apply absolute top-1/2 left-1/2 w-2/5 h-px bg-white -translate-x-1/2 -translate-y-1/2;
     }
+    label>input + span {
+        @apply cursor-pointer;
+    }
+    label>input:disabled + span {
+        @apply cursor-not-allowed;
+    }
+    label>input:disabled + span {
+        @apply bg-gray-500 opacity-25;
+    }
     label>input[type=checkbox], label>input[type=radio] {
         display: none;
     }

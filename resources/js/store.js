@@ -17,45 +17,51 @@ export default new createStore({
                         label: "Az államvédelmi negyed",
                         checked: true,
                         clicked: false,
+                        disabled: false,
                         type: "category"
                     },
                     {
                         value: "az-andrassy-uton-tul",
                         label: "Az Andrássy úton túl",
-                        checked: true,
+                        checked: false,
                         clicked: false,
+                        disabled: true,
                         type: "category"
 
                     },
                     {
                         value: "orszagos-lefedettseg",
                         label: "Országos lefedettség",
-                        checked: true,
+                        checked: false,
                         clicked: false,
+                        disabled: true,
                         type: "category"
 
                     },
                     {
                         value: "rejtett-helyek",
                         label: "Rejtett helyek",
-                        checked: true,
+                        checked: false,
                         clicked: false,
+                        disabled: true,
                         type: "category"
 
                     },
                     {
                         value: "titkos-lakasok",
                         label: "Titkos lakások",
-                        checked: true,
+                        checked: false,
                         clicked: false,
+                        disabled: true,
                         type: "category"
 
                     },
                     {
                         value: "banyaugyek",
                         label: "Bányaügyek",
-                        checked: true,
+                        checked: false,
                         clicked: false,
+                        disabled: true,
                         type: "category"
                     },
                 ],
