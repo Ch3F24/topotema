@@ -69,7 +69,7 @@ header, body {
         @apply cursor-not-allowed;
     }
     label>input:disabled + span {
-        @apply bg-gray-500 opacity-25;
+        @apply bg-gray-500 opacity-50;
     }
     label>input[type=checkbox], label>input[type=radio] {
         display: none;

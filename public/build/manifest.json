@@ -54,16 +54,16 @@
     "file": "assets/_plugin-vue_export-helper.6ce33cc2.js"
   },
   "resources/css/app.css": {
-    "file": "assets/app.0a2d022e.css",
+    "file": "assets/app.9486ef82.css",
     "src": "resources/css/app.css",
     "isEntry": true
-  },
-  "resources/js/app.css": {
-    "file": "assets/app.6056f137.css",
-    "src": "resources/js/app.css"
   },
   "resources/js/object.css": {
     "file": "assets/object.4d26d3ad.css",
     "src": "resources/js/object.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app.6056f137.css",
+    "src": "resources/js/app.css"
   }
 }
