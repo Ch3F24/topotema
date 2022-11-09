@@ -21,7 +21,7 @@ body::after {
     /*background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");*/
     background-image: url("/assets/images/mask.svg"), url("/assets/images/hatter1.jpg");
     background-position: 180px top, -100px top;
-    background-size: cover, cover;
+    background-size: auto 100%, cover;
 }
 header, body {
     background-repeat: no-repeat, no-repeat;
@@ -99,7 +99,7 @@ header, body {
 
 @media screen and (min-width: 768px) {
     .home header {
-        background-position: 100% top, -250px top;
+        background-position: 25vw top, -25vw top;
         background-size: contain, cover;
     }
 }
@@ -109,9 +109,9 @@ header, body {
         @apply bg-none;
     }
     body.home  {
-        background-position: calc(100vw * 0.25) top, left top;
+        background-position: calc(100vw * 0.20) top, left top;
         transition: background-image 1s linear;
-        background-size: cover, contain;
+        background-size: auto 100%, contain;
 
         /*background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");*/
     }

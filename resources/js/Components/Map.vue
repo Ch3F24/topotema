@@ -1,5 +1,5 @@
 <template>
-    <div id="mapContainer" class="h-full mb-8 md:mb-0 h-[50vh] lg:h-[60vh]">
+    <div id="mapContainer" class="h-full mt-8 mb-8 md:mb-0 h-[50vh] lg:h-[60vh]">
         <!-- Blind Map animation -->
         <Transition name="fade" mode="out-in">
             <div class="h-full mb-8 md:mb-0 h-[50vh] lg:h-[60vh]" v-if="!mapLoaded">
