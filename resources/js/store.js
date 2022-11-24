@@ -4,100 +4,28 @@ import objects from "./objects.js";
 export default new createStore({
     state() {
         return {
-            objects: objects,
+            objects: [],
+            addresses: [],
             checkboxStates: [],
             geoJsonLayer: [],
             map: null,
             start: 1950,
             end: 1970,
             filters: {
-                category: [
-                    {
-                        value: "az-allamvedelmi-negyed",
-                        label: "Az államvédelmi negyed",
-                        checked: true,
-                        clicked: false,
-                        disabled: false,
-                        type: "category"
-                    },
-                    {
-                        value: "az-andrassy-uton-tul",
-                        label: "Az Andrássy úton túl",
-                        checked: false,
-                        clicked: false,
-                        disabled: true,
-                        type: "category"
-
-                    },
-                    {
-                        value: "orszagos-lefedettseg",
-                        label: "Országos lefedettség",
-                        checked: false,
-                        clicked: false,
-                        disabled: true,
-                        type: "category"
-
-                    },
-                    {
-                        value: "rejtett-helyek",
-                        label: "Rejtett helyek",
-                        checked: false,
-                        clicked: false,
-                        disabled: true,
-                        type: "category"
-
-                    },
-                    {
-                        value: "titkos-lakasok",
-                        label: "Titkos lakások",
-                        checked: false,
-                        clicked: false,
-                        disabled: true,
-                        type: "category"
-
-                    },
-                    {
-                        value: "banyaugyek",
-                        label: "Bányaügyek",
-                        checked: false,
-                        clicked: false,
-                        disabled: true,
-                        type: "category"
-                    },
-                ],
-                organizations: [
-                    {
-                        value: "test-szervezet",
-                        label: "Test szervezet",
-                        checked: false,
-                        type: "organization"
-                    },
-                    {
-                        value: "masik-szervezet",
-                        label: "Masik szervezet",
-                        checked: false,
-                        type: "organization"
-                    },
-                ],
-                subject_words: [
-                    {
-                        value: "sajt",
-                        label: "sajt",
-                        checked: false,
-                        type: "subject_word"
-                    },
-                    {
-                        value: "repa",
-                        label: "repa",
-                        checked: false,
-                        type: "subject_word"
-                    },
-                ],
+                category: [],
+                organizations: [],
+                subject_words: [],
                 years: [1950,1970]
             }
         }
     },
     mutations: {
+        setFilters(state,filter) {
+            state.filters[filter.type] = filter.value;
+        },
+        setObjects(state,value) {
+          state.objects = value
+        },
         setStart(state,value) {
           state.start = value
         },

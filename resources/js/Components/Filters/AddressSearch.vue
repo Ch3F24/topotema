@@ -2,9 +2,9 @@
     <div class="input-filter" ref="dropdown">
         <div v-if="this.results.length" class="input-filter_dropdown">
             <span v-for="result in results"
-                  class="cursor-pointer block hover:bg-red-500/50 hover:text-white" @click="select(result)">{{ result.properties.Name }}</span>
+                  class="cursor-pointer block hover:bg-red-500/50 hover:text-white" @click="select(result)">{{ result.properties.full_address }}</span>
         </div>
-        <input type="text" placeholder="Cím" v-model="query" @input="search" @keyup.enter="select()" class="focus:outline-0">
+        <input type="text" :placeholder="__('Address')" v-model="query" @input="search" @keyup.enter="select()" class="focus:outline-0">
     </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
                 this.results = []
                 let q = this.query.toLowerCase();
                 this.objects.forEach(x => {
-                    if (x.properties["Name"].toLowerCase().includes(q) || x.properties["organizations"].toLowerCase().includes(q)) this.results.push(x)
+                    if (x.properties["full_address"].toLowerCase().includes(q) || x.properties["organizations"].toLowerCase().includes(q)) this.results.push(x)
                 });
             }
         },
@@ -32,7 +32,7 @@ export default {
                 this.$store.dispatch('clearFilters');
                 this.$store.dispatch('filtering');
             } else {
-                this.$store.dispatch('filtering',object.properties.Name);
+                this.$store.dispatch('filtering',object.properties.name);
                 this.results = [];
             }
         }

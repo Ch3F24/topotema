@@ -1,4 +1,6 @@
 {
     "organizations": "Szervezet",
-    "subject_words": "Tárgyszó"
+    "subject_words": "Tárgyszó",
+    "Address": "Cím",
+    "Content search": "Szabadszöveges keresés"
 }

@@ -6,36 +6,22 @@
 @section('main')
     <div class="hidden lg:block lg:w-3/12">
         <div class="text-white mt-24">
-            <p>ÁLLAMVÉDELMI NEGYED LEÍRÁSA</p>
-            <p>TEMA 3</p>
+            <p>{{ $object->category->first()->title }}</p>
             <p>
-                Ceperion corat quid ut omnimi, ut utem quatemqui acea
-                evelent otationsenis re volorporios doluptat apietur moste
-                volenda ndiati omniendam quisi dolorio ssitae saectiaturis
-                ent optur, utem rendande de num nimincti officiissed ulles
-                endelendis doluptatibus dem la expelendio od molessim et
-                aditam aut viduciurepta doleste nusdae nit velectotatem
-                ullaborest fuga. Cearum que de suntur a dolora volupis ide
-                con rem labo. Ficit voloreh enetur magnihi llandiatem id que
-                con ped mos dio. Arias invenimin nis nit que pra net pa nos
-                sim qu
+                {{ $object->category->first()->content }}
             </p>
         </div>
     </div>
     <div class="px-4 md:px-0 w-full lg:w-7/12 ml-auto order-first lg:order-none flex flex-wrap">
-        <h1 class="w-full text-white order-first lg:order-none text-2xl lg:text-4xl mb-4">Andrássy út 22.</h1>
+        <h1 class="w-full text-white order-first lg:order-none text-2xl lg:text-4xl mb-4">{{ $object->alias }}</h1>
         <div class="w-full lg:w-7/12">
             <div class="slider">
-                <slider></slider>
+                <slider :photos="{{ json_encode($photos) }}"></slider>
             </div>
-            <p class="text-white mt-6">Ceperion corat quid ut omnimi, ut utem quatemqui acea evelent
-                otationsenis re volorporios doluptat apietur moste volenda ndiati
-                omniendam quisi dolorio ssitae saectiaturis ent optur, utem
-                rendande de num nimincti officiissed ulles endelendis doluptatibus
-                dem la expelendio od molessim et aditam aut viduciurepta doleste
-                nusdae nit velectotatem ullaborest fuga. Cearum que de suntur
-                a dolora volupis ide con rem labo. Ficit voloreh enetur magnihi
-                llandiatem id que con ped mos dio. Arias invenimin nis nit que </p>
+            <div class="text-white mt-6">
+{{--                <img src="data:image/png;base64,{{ chunk_split(base64_encode($address->objects()->first()->photos->first()->file->file_content)) }}" alt="">--}}
+                {!! $object->content !!}
+            </div>
         </div>
         <div class="order-first lg:order-none w-full flex flex-wrap items-start lg:block lg:w-3/12 ml-auto my-4 lg:my-0">
             <div class="w-1/2 lg:w-full bg-black relative overflow-hidden transition-all">

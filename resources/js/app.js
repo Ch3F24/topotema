@@ -46,7 +46,3 @@ function changeBg() {
     setTimeout(changeBg,5000);
 }
 setTimeout(changeBg,5000);
-// changeBg();
-// while (true) {
-
-// }

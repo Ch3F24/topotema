@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use App\Models\Event;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -15,32 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-})->name('home');
+Route::get('/', [PageController::class,'home'])->name('home');
 
-Route::get('/object', function () {
-//    $event = Event::query()->findOrFail($id);
-    return view('pages.object');
-});
-
-//Route::get('/object/{id}', function ($id) {
-//    $event = Event::query()->findOrFail($id);
-//    return view('pages.object',compact('event'));
-//});
-
-Route::get('/db', function () {
-//    return DB::connection('oracle')->table('EVENTS')->get();
-//    $tables = DB::select('SHOW TABLES');
-//    foreach ($tables as $table) {
-//        foreach ($table as $key => $value)
-//            echo $value;
-//    }
-//    $data = DB::table('EVENTS')->get();
-//    $data = DB::table('all_tables')->select('table_name')->get();
-//    $data = DB::table('EVENTS')->select('*')->get();
-    return Event::query()->get();
-//    DB::listen(function ($query) {
-//        dump("{$query->time} ==> {$query->sql}");
-//    });
-});
+Route::get('/address/{address?}',[PageController::class,'address'])->name('address.view');
+Route::get('/object/{object?}',[PageController::class,'object'])->name('object.view');
+Route::get('/search',[PageController::class,'search'])->name('search');
+//Route::get('/search')

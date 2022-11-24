@@ -15,20 +15,21 @@
                     <img src="{{ asset('assets/images/logo.svg') }}" alt="Topotéma logó" class="logo">
                 </a>
             </div>
-            <div class="flex-1 lg:flex-none mr-4 ml-auto">
+            <ul class="flex-1 flex space-x-2 text-white justify-end lg:items-center mr-4 md:mr-8 ml-auto text-lg">
+                <li>En</li>
+                <li>|</li>
+                <li>Hu</li>
+            </ul>
+            <div class="">
                 <a href="https://www.abtl.hu/">
                     <img src="{{ asset('assets/images/abtl_logo.svg') }}" alt="Abtl logó" class="abtl-logo hidden lg:block">
                     <img src="{{ asset('assets/images/abtl_mono.svg') }}" alt="Abtl logó" class="abtl-logo lg:hidden ml-auto">
                 </a>
             </div>
-            <ul class="lg:flex-1 flex space-x-2 text-white justify-end lg:items-center">
-                <li>En</li>
-                <li>|</li>
-                <li>Hu</li>
-            </ul>
         </nav>
     </header>
     <main id="app" class="md:container flex flex-wrap gap-x-4 mb-4">
+{{--    <main class="md:container flex flex-wrap gap-x-4 mb-4">--}}
         @yield('main')
     </main>
 </body>
