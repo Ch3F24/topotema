@@ -2,24 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-/*Temporary*/
-body {
-    @apply bg-black min-h-screen
+/*Fonts*/
+@font-face {
+    font-family: 'Barlow';
+    src: url("/public/fonts/Barlow-Light.ttf") format('truetype');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Barlow';
+    src: url("/public/fonts/Barlow-Medium.ttf") format('truetype');
+    font-weight: 500;
 }
 
+@font-face {
+    font-family: 'Barlow';
+    src: url("/public/fonts/Barlow-Regular.ttf") format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Barlow';
+    src: url("/public/fonts/Barlow-SemiBold.ttf") format('truetype');
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'Minion';
+    src: url("/public/fonts/MinionPro-Regular.otf") format('truetype');
+    font-weight: 400;
+}
+
+:root {
+    --headerHeight: 0
+}
+
+/*Layout*/
+body,
+html {
+    @apply h-full
+}
+body {
+    @apply bg-black min-h-screen flex flex-col
+}
 body::after {
     position: absolute;
     width: 0;
     height: 0;
     overflow: hidden;
     z-index: -1;
-    content: url(/assets/images/hatter1.jpg) url(/assets/images/hatter2.jpg) url(/assets/images/hatter3.jpg);
+    content: url("/public/assets/images/hatter1.jpg") url("/public/assets/images/hatter2.jpg") url("/public/assets/images/hatter3.jpg");
+}
+main {
+    @apply flex-1;
 }
 
 /*Header*/
 .home header {
     /*background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");*/
-    background-image: url("/assets/images/mask.svg"), url("/assets/images/hatter1.jpg");
+    background-image: url("/public/assets/images/mask.svg"), url("/public/assets/images/hatter1.jpg");
     background-position: 180px top, -100px top;
     background-size: auto 100%, cover;
 }
@@ -34,6 +73,15 @@ header, body {
 .abtl-logo {
     @apply w-16 lg:w-48;
 }
+.nav-link {
+    @apply relative
+}
+.nav-link a {
+    @apply hover:text-cinnabar font-light;
+}
+.nav-link+.nav-link:before {
+    @apply content-['|'] pr-2
+}
 
 /*Mobile*/
 .divider {
@@ -41,8 +89,7 @@ header, body {
 }
 .divider.magnificent::after {
     content: "";
-    /*background-image: url("http://topotema.test/assets/svg/show_magnifying.svg");*/
-    background-image: url("/assets/svg/show_magnifying.svg");
+    background-image: url("/public/assets/svg/show_magnifying.svg");
     @apply bg-black absolute right-8 -top-4 w-12 h-8 block bg-no-repeat bg-center
 }
 
@@ -50,10 +97,10 @@ header, body {
 
     /*Categories*/
     .categories {
-        @apply space-y-4 pl-12 lg:ml-0 relative;
+        @apply space-y-4 pl-12 lg:ml-0 relative lg:fixed lg:h-full overflow-hidden lg:overflow-visible transition-all mt-4 lg:mt-0;
     }
     .categories li label span {
-        @apply font-bold text-white bg-red-500 inline-block px-4 relative;
+        @apply font-light text-white bg-cinnabar inline-block px-4 pb-0.5 relative;
     }
     .categories li p.select-all {
         @apply relative mb-3 cursor-pointer;
@@ -86,15 +133,25 @@ header, body {
 
     /*Inputs*/
     .input-filter {
-        @apply rounded-full border border-red-500 relative;
+        @apply  relative;
     }
     .input-filter input,
     .input-filter button,
     .input-filter p {
-        @apply w-full rounded-full bg-black text-white placeholder-white text-center p-1
+        @apply rounded-full border border-cinnabar relative w-full text-white placeholder-white text-center p-1 bg-black focus-visible:outline-none;
     }
     .input-filter .input-filter_dropdown {
-        @apply absolute bottom-full left-[5%] bg-black border-t border-l border-r border-red-500 text-white w-[90%] rounded-t-lg p-4 z-[400] space-y-2;
+        @apply absolute bottom-full left-[5%] bg-black border-t border-l border-r border-cinnabar text-white w-[90%] rounded-t-lg p-4 z-[400] space-y-2;
+    }
+    .search-input {
+        @apply relative;
+    }
+    .search-input::before {
+        content: '';
+        height: 18px;
+        width: 18px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 18 18.86' style='stroke:%23ffffff'%3E%3Cdefs%3E%3CclipPath id='clip-path' transform='translate(0 0)'%3E%3Crect class='cls-1' width='18' height='18.86'/%3E%3C/clipPath%3E%3C/defs%3E%3Cpath class='cls-3' d='M7.41,14.33A6.92,6.92,0,1,0,.5,7.41,6.91,6.91,0,0,0,7.41,14.33Z' transform='translate(0 0)'/%3E%3Cline class='cls-4' x1='12.15' y1='13.01' x2='17.5' y2='18.36'/%3E%3C/svg%3E%0A");
+        @apply absolute left-4 top-1/2 z-10 bg-no-repeat -translate-y-1/2;
     }
 
 @media screen and (min-width: 768px) {
@@ -105,6 +162,9 @@ header, body {
 }
 
 @media screen and (min-width: 1024px) {
+    main {
+        /*max-height: calc(100vh - var(--headerHeight));*/
+    }
     .home header {
         @apply bg-none;
     }
@@ -112,42 +172,19 @@ header, body {
         background-position: calc(100vw * 0.20) top, left top;
         transition: background-image 1s linear;
         background-size: auto 100%, contain;
-
-        /*background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");*/
+    }
+    body:not(.home)  {
+        background-image: url("/public/assets/images/mask_gr.svg");
+        background-position: calc(100vw * 0.20) top, left top;
+        background-size: auto 100%, contain;
     }
     body.home[data-bg="1"]  {
-        /*background-position: calc(100vw * 0.25) top, left top;*/
-        /*transition: background-image 1s linear;*/
-        /*background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter1.jpg");*/
-        background-image: url("/assets/images/mask.svg"), url("/assets/images/hatter1.jpg");
+        background-image: url("/public/assets/images/mask.svg"), url("/public/assets/images/hatter1.jpg");
     }
     body.home[data-bg="2"]  {
-        /*background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter2.jpg");*/
-        background-image: url("/assets/images/mask.svg"), url("/assets/images/hatter2.jpg");
-
-
+        background-image: url("/public/assets/images/mask.svg"), url("/public/assets/images/hatter2.jpg");
     }
     body.home[data-bg="3"]  {
-        /*background-image: url("http://topotema.test/assets/images/mask.svg"), url("http://topotema.test/assets/images/hatter3.jpg");*/
-        background-image: url("/assets/images/mask.svg"), url("/assets/images/hatter3.jpg");
+        background-image: url("/public/assets/images/mask.svg"), url("/public/assets/images/hatter3.jpg");
     }
-    /*body {*/
-    /*    background-image: url("http://topotema.test/assets/images/mask.svg");*/
-    /*    background-position: calc(100vw * 0.25) top;*/
-    /*}*/
 }
-
-/*Object page*/
-
-#folder-files.show {
-    @apply max-h-96 py-4 border-t border-b lg:border-0;
-}
-#pdf-folder p {
-    @apply rounded-full border border-red-500  text-white text-center p-1 lg:absolute lg:top-1/2 lg:left-0 lg:-translate-y-1/2 w-full lg:mt-2 lg:border-0 lg:rounded-none;
-}
-/*.images .swiper-slide img {*/
-/*    @apply h-[60vh] lg:h-[300px] w-full object-cover;*/
-/*}*/
-/*.swiper.images .swiper-slide {*/
-/*    width: auto!important;*/
-/*}*/

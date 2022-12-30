@@ -3,24 +3,68 @@
     "file": "assets/close.e94b23ef.svg",
     "src": "public/assets/svg/close.svg"
   },
+  "public/fonts/Barlow-Medium.ttf": {
+    "file": "assets/Barlow-Medium.fb7648a6.ttf",
+    "src": "public/fonts/Barlow-Medium.ttf"
+  },
+  "public/fonts/Barlow-Regular.ttf": {
+    "file": "assets/Barlow-Regular.cd90f685.ttf",
+    "src": "public/fonts/Barlow-Regular.ttf"
+  },
+  "public/fonts/Barlow-SemiBold.ttf": {
+    "file": "assets/Barlow-SemiBold.4e73c7c4.ttf",
+    "src": "public/fonts/Barlow-SemiBold.ttf"
+  },
+  "public/fonts/Barlow-Light.ttf": {
+    "file": "assets/Barlow-Light.f5e87512.ttf",
+    "src": "public/fonts/Barlow-Light.ttf"
+  },
+  "public/fonts/MinionPro-Regular.otf": {
+    "file": "assets/MinionPro-Regular.859dc0a1.otf",
+    "src": "public/fonts/MinionPro-Regular.otf"
+  },
+  "public/assets/images/hatter1.jpg": {
+    "file": "assets/hatter1.57d4bdc0.jpg",
+    "src": "public/assets/images/hatter1.jpg"
+  },
+  "public/assets/images/mask.svg": {
+    "file": "assets/mask.1d5bd02e.svg",
+    "src": "public/assets/images/mask.svg"
+  },
+  "public/assets/svg/show_magnifying.svg": {
+    "file": "assets/show_magnifying.e9f1e221.svg",
+    "src": "public/assets/svg/show_magnifying.svg"
+  },
+  "public/assets/images/mask_gr.svg": {
+    "file": "assets/mask_gr.47359471.svg",
+    "src": "public/assets/images/mask_gr.svg"
+  },
   "node_modules/leaflet/dist/images/layers.png": {
     "file": "assets/layers.1dbbe9d0.png",
     "src": "node_modules/leaflet/dist/images/layers.png"
-  },
-  "node_modules/leaflet/dist/images/marker-icon.png": {
-    "file": "assets/marker-icon.574c3a5c.png",
-    "src": "node_modules/leaflet/dist/images/marker-icon.png"
   },
   "node_modules/leaflet/dist/images/layers-2x.png": {
     "file": "assets/layers-2x.066daca8.png",
     "src": "node_modules/leaflet/dist/images/layers-2x.png"
   },
+  "node_modules/leaflet/dist/images/marker-icon.png": {
+    "file": "assets/marker-icon.574c3a5c.png",
+    "src": "node_modules/leaflet/dist/images/marker-icon.png"
+  },
+  "public/assets/images/hatter2.jpg": {
+    "file": "assets/hatter2.7bdd52fb.jpg",
+    "src": "public/assets/images/hatter2.jpg"
+  },
+  "public/assets/images/hatter3.jpg": {
+    "file": "assets/hatter3.a043140b.jpg",
+    "src": "public/assets/images/hatter3.jpg"
+  },
   "resources/js/app.js": {
-    "file": "assets/app.373a7eab.js",
+    "file": "assets/app.81e46f2f.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
-      "__plugin-vue_export-helper.18d47d7d.js"
+      "_mixins.5b006757.js"
     ],
     "css": [
       "assets/app.6056f137.css"
@@ -37,33 +81,33 @@
     "isEntry": true
   },
   "resources/js/object.js": {
-    "file": "assets/object.a5e68760.js",
+    "file": "assets/object.587ffa80.js",
     "src": "resources/js/object.js",
     "isEntry": true,
     "imports": [
-      "__plugin-vue_export-helper.18d47d7d.js"
+      "_mixins.5b006757.js"
     ],
     "css": [
-      "assets/object.4d26d3ad.css"
+      "assets/object.e0f82a51.css"
     ],
     "assets": [
       "assets/close.e94b23ef.svg"
     ]
   },
-  "__plugin-vue_export-helper.18d47d7d.js": {
-    "file": "assets/_plugin-vue_export-helper.18d47d7d.js"
+  "_mixins.5b006757.js": {
+    "file": "assets/mixins.5b006757.js"
   },
-  "resources/css/app.css": {
-    "file": "assets/app.94c5901b.css",
-    "src": "resources/css/app.css",
-    "isEntry": true
+  "resources/js/object.css": {
+    "file": "assets/object.e0f82a51.css",
+    "src": "resources/js/object.css"
   },
   "resources/js/app.css": {
     "file": "assets/app.6056f137.css",
     "src": "resources/js/app.css"
   },
-  "resources/js/object.css": {
-    "file": "assets/object.4d26d3ad.css",
-    "src": "resources/js/object.css"
+  "resources/css/app.css": {
+    "file": "assets/app.dc4b2194.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
   }
 }

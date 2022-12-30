@@ -21,18 +21,21 @@
 </template>
 
 <script>
-import input_filters from "./Filters/InputFilter.vue"
-import range_filter from "./Filters/Range.vue"
-import "leaflet/dist/leaflet.css";
+import input_filters from "./Filters/InputFilters.vue" // Import map filters components.
+import range_filter from "./Filters/Range.vue" // Import range filter component.
+
+import "leaflet/dist/leaflet.css"; // Import leaflet framework css.
 
 export default {
     name: "Map",
+
     components: {
         input_filters,
         range_filter
     },
+
     props: {
-        objects: {
+        objectsProp: {
             required: true
         },
         organizations: {
@@ -49,22 +52,26 @@ export default {
         }
 
     },
+
     data() {
         return {
             markerIcon: '/assets/images/marker-icon-2x.png',
             mapLoaded: false
         }
     },
+
     beforeCreate() {
-        this.$store.commit('setObjects', this.objects)
-        this.$store.commit('setFilters',{type: 'organizations',value: this.organizations})
-        this.$store.commit('setFilters',{type: 'category',value: this.categories})
-        this.$store.commit('setFilters',{type: 'subject_words',value: this.subject_words})
+        this.$store.commit('setObjects', this.objectsProp) // Commit objects to store.
+        this.$store.commit('setFilters',{type: 'organizations',value: this.organizations}) // Commit organizations to filters in store.
+        this.$store.commit('setFilters',{type: 'category',value: this.categories}) // Commit categories to filters in store.
+        this.$store.commit('setFilters',{type: 'subject_words',value: this.subject_words}) // Commit subject words to filters in store.
     },
+
     mounted() {
-        setTimeout(this.setMapLoaded, 5000)
-        setTimeout(this.initMap, 5400)
+        setTimeout(this.setMapLoaded, 5000) // Blind map animation.
+        setTimeout(this.initMap, 5400) // Init map.
     },
+
     methods: {
         setMapLoaded() {
             this.mapLoaded = true;
@@ -74,7 +81,8 @@ export default {
             const layer = new L.StamenTileLayer("toner")
 
             //Set default map position and commit to state management
-            this.$store.commit('setMap', L.map('mapContainer', {attributionControl: false}).setView([47.1556942, 18.3839918], 8))
+            const map = L.map('mapContainer', {attributionControl: false}).setView([47.1556942, 18.3839918], 8);
+            this.$store.commit('setMap', map)
 
             //Set marker icon
             L.Marker.prototype.options.icon = L.icon({
@@ -88,50 +96,48 @@ export default {
             //Set maximum zoom
             this.map._layersMaxZoom = 17
 
-            //pointer click function
-            function whenClicked(e) {
-                console.log(e.target)
-                console.log(e.target.feature.properties);
-            }
-
-            function onEachFeature(feature, layer) {
-                //bind click
-                layer.on({
-                    click: whenClicked,
-                });
-            }
-
             //Set GeoJson with filters
             let geo = L.geoJSON(null, {
-                onEachFeature: onEachFeature,
+                onEachFeature: this.onEachFeature,
                 filter: (feature) => {
                     if (this.checkboxStates.name.length) {
-                        return this.checkboxStates.name.includes(feature.properties.name)
+                        return this.checkboxStates.name.includes(feature.properties.full_address)
                     } else {
+
+                        // Check object date is between the filters date.
                         const isYearChecked =
-                            // feature.properties.year >= this.checkboxStates.year[0] && feature.properties.year <= this.checkboxStates.year[1];
                         feature.properties.date_from >= this.checkboxStates.year[0] && feature.properties.date_to <= this.checkboxStates.year[1];
 
+                        // Check selected organization is exists at the object properties
                         const isOrganizationTypeChecked =
                             this.checkboxStates.organizations.length ?
                                 feature.properties.organizations.some(organization => this.checkboxStates.organizations.includes(organization)) : true;
 
+                        // Check selected subject word is exists at the object properties
                         const isSubjectWordTypeChecked =
                             this.checkboxStates.subject_words.length ?
                                 feature.properties.subject_words.some(subject_word => this.checkboxStates.subject_words.includes(subject_word)) : true;
 
+                        // Check selected category is exists at the object properties
                         const isCategoryChecked =
                             feature.properties.category.some(cat => this.checkboxStates.category.includes(cat));
 
-                        return isYearChecked && isOrganizationTypeChecked && isSubjectWordTypeChecked && isCategoryChecked && isSubjectWordTypeChecked
+                        // Check object has uploaded video content
+                        const isVideoChecked = this.checkboxStates.video ? feature.properties.video === true  : true;
+
+                        return isYearChecked && isOrganizationTypeChecked && isSubjectWordTypeChecked && isCategoryChecked && isSubjectWordTypeChecked && isVideoChecked
                     }
                 }
             }).addTo(this.map);
 
             //Set pointer popup
             geo.bindPopup((layer) => {
-                // return `${layer.feature.properties.Name} <br> <a href="objects/${layer.feature.properties.Name}" target="_blank">Részletek</a>`
-                return `${layer.feature.properties.full_address} <br>  <a href="${this.object_route + '/' + layer.feature.properties.id}" target="_blank">Részletek</a>`
+                return `
+                        <p>${layer.feature.properties.name}<br>
+                        ${layer.feature.properties.full_address ?? ''}<br>
+                        ${layer.feature.properties.description ?? ''}
+                        </p>
+                        <a href="${this.object_route + '/' + layer.feature.properties.id}" target="_blank">Részletek</a>`
             });
 
             //Commit geoJson to vuex
@@ -142,8 +148,17 @@ export default {
 
             //Set objects
             this.geoJsonLayer.addData(this.objects)
+        },
+        clickPointer(e) {
+
+        },
+        onEachFeature(feature, layer) {
+            layer.on({
+                click: this.clickPointer,
+            });
         }
     },
+
     watch: {
         filters: {
             handler() {
@@ -152,6 +167,7 @@ export default {
             deep: true
         }
     },
+
     computed: {
         checkboxStates() {
             return this.$store.state.checkboxStates;
@@ -174,6 +190,7 @@ export default {
 </script>
 
 <style>
+/* Blind map animation */
 .cls-1 {
     fill: #000000;
     stroke: #fff;
@@ -211,6 +228,7 @@ export default {
     }
 }
 
+/* Fade transition */
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.5s ease;

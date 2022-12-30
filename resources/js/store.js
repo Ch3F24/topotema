@@ -1,5 +1,4 @@
 import { createStore } from "vuex";
-import objects from "./objects.js";
 
 export default new createStore({
     state() {
@@ -9,13 +8,14 @@ export default new createStore({
             checkboxStates: [],
             geoJsonLayer: [],
             map: null,
-            start: 1950,
-            end: 1970,
+            start: 1944,
+            end: 1990,
             filters: {
                 category: [],
                 organizations: [],
                 subject_words: [],
-                years: [1950,1970]
+                years: [1944,1990],
+                // video: false
             }
         }
     },
@@ -25,12 +25,6 @@ export default new createStore({
         },
         setObjects(state,value) {
           state.objects = value
-        },
-        setStart(state,value) {
-          state.start = value
-        },
-        setEnd(state,value) {
-            state.end = value
         },
         setYear(state,value) {
             state.filters.years = [];
@@ -64,27 +58,32 @@ export default new createStore({
                 year: [],
                 organizations: [],
                 subject_words: [],
-                name: []
+                name: [],
+                video: false
             }
             state.checkboxStates.year = state.filters.years;
             // state.checkboxStates.year.push(state.end);
             Object.keys(state.filters).forEach((type)=> {
-                state.filters[type].forEach((filter) => {
-                    if (filter.checked) {
-                        switch (type) {
-                            case 'category': state.checkboxStates.category.push(filter.value); break
-                            // case 'year': state.checkboxStates.years.push(filter.value); break
-                            case 'organizations': state.checkboxStates.organizations.push(filter.value); break
-                            case 'subject_words': state.checkboxStates.subject_words.push(filter.value); break
-                        }
-                    }
 
-                })
+                // Check filter is array
+                if ((Array.isArray(state.filters[type]))) {
+                    state.filters[type].forEach((filter) => {
+                        if (filter.checked) {
+                            switch (type) {
+                                case 'category': state.checkboxStates.category.push(filter.value); break
+                                case 'organizations': state.checkboxStates.organizations.push(filter.value); break
+                                case 'subject_words': state.checkboxStates.subject_words.push(filter.value); break
+                            }
+                        }
+
+                    })
+                } else {
+                    state.checkboxStates[type] = state.filters[type]
+                }
             })
         },
         async clearFilters({state}) {
             Object.keys(state.filters).forEach((type)=> {
-                console.log(type)
                 if (type !== 'years') {
                     state.filters[type].forEach((filter) => {
                         filter.checked = false
@@ -123,6 +122,9 @@ export default new createStore({
                     m
                 ])
             }
+        },
+        videoFilterToggle({state}) {
+            state.filters.video = ! state.filters.video;
         }
     },
 });

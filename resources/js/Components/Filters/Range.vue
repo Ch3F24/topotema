@@ -11,13 +11,14 @@ import 'nouislider/dist/nouislider.css'
 
 export default {
     name: "Range",
+
     mounted() {
         let _this = this;
         const arbitraryValuesSlider = document.getElementById('arbitrary-values-slider');
 
         noUiSlider.create(arbitraryValuesSlider, {
             start: [this.start,this.end],
-            range: { min: 1900, max: 2000 },
+            range: { min: 1900 , max: 1990 },
             step: 1,
             connect: true,
             tooltips: {
@@ -25,8 +26,6 @@ export default {
                     return numericValue.toFixed(0);
                 }
             },
-            // format: format,
-            // pips: { mode: 'steps', format: format, density: 50 },
             pips: { mode: 'range', density: 1000 },
         });
 
@@ -35,6 +34,7 @@ export default {
             _this.$store.dispatch('updateCheckboxStates')
         });
     },
+
     computed: {
         start() {
             return this.$store.state.start;
@@ -47,35 +47,35 @@ export default {
 </script>
 
 <style>
-.noUi-horizontal {
-    height: 1px;
-    border: red;
-    background: red;
-    box-shadow: none;
-}
-.noUi-horizontal .noUi-handle {
-    width: 1px;
-    right: 0;
-    top: -14px;
-}
-.noUi-handle:before, .noUi-handle:after {
-    display: none;
-}
-.noUi-horizontal .noUi-tooltip {
-    bottom: unset;
-    background-color: #000000;
-    color: #ffffff;
-    border: none;
-}
-.noUi-value-horizontal {
-    transform: translate(-50%, 0%);
-    color: red;
-}
+    .noUi-horizontal {
+        height: 1px;
+        border: red;
+        background: red;
+        box-shadow: none;
+    }
+    .noUi-horizontal .noUi-handle {
+        width: 1px;
+        right: 0;
+        top: -14px;
+    }
+    .noUi-handle:before, .noUi-handle:after {
+        display: none;
+    }
+    .noUi-horizontal .noUi-tooltip {
+        bottom: unset;
+        background-color: #000000;
+        color: #ffffff;
+        border: none;
+    }
+    .noUi-value-horizontal {
+        transform: translate(-50%, 0%);
+        color: red;
+    }
 
-.noUi-marker {
-    display: none;
-}
-.noUi-connect {
-    background: #ffffff;
-}
+    .noUi-marker {
+        display: none;
+    }
+    .noUi-connect {
+        background: #ffffff;
+    }
 </style>

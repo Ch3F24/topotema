@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ObjectController;
 use App\Http\Controllers\PageController;
-use App\Models\Event;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageController::class,'home'])->name('home');
+// Home
+Route::get('/', [HomeController::class,'index'])->name('home');
 
-Route::get('/address/{address?}',[PageController::class,'address'])->name('address.view');
-Route::get('/object/{object?}',[PageController::class,'object'])->name('object.view');
-Route::get('/search',[PageController::class,'search'])->name('search');
-//Route::get('/search')
+// Object view
+Route::get('/object/{object?}',[ObjectController::class,'show'])->name('object');
+
+// Search results
+Route::get('/search',[ObjectController::class,'search'])->name('search');
+
+//Imprint page
+Route::get('/imprint',[PageController::class,'imprint'])->name('imprint');
+
+//Legal notice page
+Route::get('/legal-notice',[PageController::class,'legal_notice'])->name('legal_notice');
+

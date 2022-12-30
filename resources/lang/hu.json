@@ -1,6 +1,16 @@
 {
+    "Site Title": "Topotéma",
     "organizations": "Szervezet",
     "subject_words": "Tárgyszó",
     "Address": "Cím",
-    "Content search": "Szabadszöveges keresés"
+    "Content search": "Szabadszöveges keresés",
+    "Memoirs": "Visszaemlékezések",
+    "Documents": "Dokumentumok",
+    "Folder": "Dosszié",
+    "All": "Mind",
+    "Videos": "Videók",
+    "(Details)": "(Részletek)",
+    "Imprint": "Impresszum",
+    "Video content": "Videós tartalom",
+    "Legal notice": "Jogi nyilatkozat"
 }

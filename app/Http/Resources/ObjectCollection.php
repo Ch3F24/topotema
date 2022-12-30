@@ -26,7 +26,8 @@ class ObjectCollection extends JsonResource
             ],
             "properties" => [
                 "id" => $this->id,
-                "name" => $this->alias,
+                "alias" => $this->alias,
+                "name" => $this->name,
                 "desciprion" => $this->description,
                 "full_address" => $this->address->first()->address,
                 "date_from" =>  intval(Carbon::parse($this->date_from_start)->format('Y')),
@@ -34,6 +35,7 @@ class ObjectCollection extends JsonResource
                 "category" => $this->categories->pluck('title'),
                 "organizations" => $this->organizations->pluck('name'),
                 "subject_words" => $this->subjects->pluck('name'),
+                "video" => count($this->videos) != 0,
                 "notes" => ""
             ]
         ];
